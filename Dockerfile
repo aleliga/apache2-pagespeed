@@ -10,15 +10,17 @@ RUN apt update && \
 		apt-transport-https \
 		gnupg \
 		ca-certificates && \
+		php \
+		php-pear \
 	apt autoclean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/archive/*.deb
 
 RUN wget https://dl-ssl.google.com/dl/linux/direct/mod-pagespeed-stable_current_amd64.deb -O /tmp/pagespeed.deb
 RUN dpkg -i /tmp/pagespeed.deb
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 78BD65473CB3BD13
-RUN a2enmod proxy_fcgi rewrite
+RUN a2dismod php* mpm_prefork
+RUN a2enmod mpm_worker proxy_fcgi rewrite http2 headers brotli expires
 
-#ADD 000-default.conf /etc/apache2/sites-available/000-default.conf
 ADD start.sh /root/start.sh
 RUN chmod 755 /root/start.sh && chown -R www-data:www-data /var/www/html
 
