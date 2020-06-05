@@ -16,7 +16,7 @@ RUN apt update && \
 RUN wget https://dl-ssl.google.com/dl/linux/direct/mod-pagespeed-stable_current_amd64.deb -O /tmp/pagespeed.deb
 RUN dpkg -i /tmp/pagespeed.deb
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 78BD65473CB3BD13
-RUN a2enmod proxy_fcgi
+RUN a2enmod proxy_fcgi mod_rewrite
 
 #ADD 000-default.conf /etc/apache2/sites-available/000-default.conf
 ADD start.sh /root/start.sh
