@@ -19,7 +19,7 @@ RUN wget https://dl-ssl.google.com/dl/linux/direct/mod-pagespeed-stable_current_
 RUN dpkg -i /tmp/pagespeed.deb
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 78BD65473CB3BD13
 RUN a2dismod php* mpm_prefork
-RUN a2enmod mpm_worker proxy_fcgi rewrite http2 headers brotli expires
+RUN a2enmod mpm_event proxy_fcgi rewrite http2 headers brotli expires
 
 ADD start.sh /root/start.sh
 RUN chmod 755 /root/start.sh && chown -R www-data:www-data /var/www/html
