@@ -20,7 +20,7 @@ RUN dpkg -i /tmp/pagespeed.deb
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 78BD65473CB3BD13
 RUN a2dismod php* 
 RUN a2dismod mpm_prefork
-RUN a2enmod mpm_event proxy_fcgi rewrite http2 headers brotli expires
+RUN a2enmod mpm_event proxy_fcgi rewrite http2 headers brotli expires remoteip
 
 ADD start.sh /root/start.sh
 RUN chmod 755 /root/start.sh && chown -R www-data:www-data /var/www/html
