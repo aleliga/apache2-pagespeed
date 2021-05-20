@@ -10,6 +10,7 @@ RUN apt update && \
 		apt-transport-https \
 		gnupg \
 		ca-certificates \
+		libapache2-mod-security2 \
 		php \
 		php-pear && \
 	apt autoclean
